@@ -51,4 +51,4 @@ service-account-csr.json
 .idea/
 downloads/
 machines.txt
-
+.vagrant
