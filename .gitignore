@@ -50,3 +50,5 @@ service-account-csr.json
 *.swp
 .idea/
 downloads/
+machines.txt
+
