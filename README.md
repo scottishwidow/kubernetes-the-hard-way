@@ -3,9 +3,9 @@
 ### A `Vagrant` file for provisioning the machines is also included.
 
 
-### Requirements
+## Requirements
 
-## Virtual or Physical Machines
+### Virtual or Physical Machines
 
 This tutorial requires four (4) virtual or physical ARM64 machines running Debian 12 (bookworm). The following table lists the four machines and their CPU, memory, and storage requirements.
 
