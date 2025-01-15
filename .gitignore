@@ -1,5 +1,7 @@
 admin-csr.json             
 admin-key.pem              
+kubessh
+kubessh.pub
 admin.csr                  
 admin.pem                  
 admin.kubeconfig
