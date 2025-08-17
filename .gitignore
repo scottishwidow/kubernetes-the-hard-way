@@ -1,3 +1,8 @@
+.vagrant/
+machines.txt
+downloads/
+hosts
+
 admin-csr.json             
 admin-key.pem              
 admin.csr                  

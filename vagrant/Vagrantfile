@@ -1,0 +1,45 @@
+# Vagrantfile for a small Kubernetes lab: 1 control-plane + 2 workers
+# Requirements:
+# - Box: generic/debian12
+# - Bridged networking (DHCP)
+# - 1 vCPU, 2GB RAM, 20GB extra disk per VM
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "generic/debian12"
+
+  # Avoid syncing the project folder into each VM (optional; comment out if you want it)
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+
+  nodes = [
+    { name: "server", role: "Kubernetes server" },
+    { name: "node-0", role: "Kubernetes worker node" },
+    { name: "node-1", role: "Kubernetes worker node" }
+  ]
+
+  nodes.each do |n|
+    config.vm.define n[:name] do |node|
+      node.vm.hostname = n[:name]
+
+      # Bridged networking (DHCP). Vagrant will let you choose the host interface on first run.
+      node.vm.network "public_network"
+
+      # Create and attach a 20GB data disk (shows up as /dev/sdb)
+      # Requires Vagrant 2.2.16+ for the disks feature.
+      node.vm.disk :disk, name: "#{n[:name]}-data", size: "20GB"
+
+      node.vm.provider :virtualbox do |vb|
+        vb.name = n[:name]
+        vb.cpus = 1
+        vb.memory = 2048
+        # Uncomment if you want VBox GUI for debugging:
+        # vb.gui = true
+      end
+
+      # Simple banner on login
+      node.vm.provision "shell", inline: <<~SHELL
+        echo ">>> #{n[:name]} (#{n[:role]}) ready"
+      SHELL
+    end
+  end
+end
+
