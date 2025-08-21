@@ -2,6 +2,10 @@
 machines.txt
 downloads/
 hosts
+*.key
+*.crt
+*.csr
+*.srl
 
 admin-csr.json             
 admin-key.pem              
