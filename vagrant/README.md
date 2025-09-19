@@ -8,7 +8,7 @@ done
 
 ```powershell
 
-foreach ($vm in `server`,`node-0`,`node-1`) {
+foreach ($vm in 'server','node-0','node-1') {
   $ip = vagrant ssh $vm -c 'hostname -I' 2>$null
   Write-Host "${vm}: $ip"
 }
